@@ -1,20 +1,36 @@
-### Hat/pattern components:
+**Hat components**
 
 * brim
 * body
 * crown decreases
-* needle size
-* abbreviations table
-* 
-
-*Need a class to control all of these?*
 
 ------
 
-### Input needed from user:
+**Pattern components**
 
-* stitches per inch
-* rows per inch
-* needle size
-* ribbing choice
+ * yarn information (???)
+ * needles
+ * gauge per inch
+ * rows per inch
+ * finished size
+ * notions
+ * notes
+ * abbreviation table
+ * instructions
+  - cast on
+  - brim
+  - body
+  - crown decreases
+  - finishing
+
+------
+
+**Input needed from user**
+
 * file type (???)
+* yarn information
+* needle size
+* gauge per inch
+* rows per inch
+* desired brim size (or just hat size?)
+* ribbing choice
