@@ -1,13 +1,17 @@
 $(document).ready(function() {
 
   // Validation loop
-  function ValidateForm(type) {
-    this.getError = function() {
-      error = this[type]();
-      if (error) {
-        var result = error;
+  function ValidateForm() {
+    this.result = [];
+    this.getErrors = function() {
+      var validations = ['email', 'passwordLength'];
+      for (var i = 0; i < validations.length; i++) {
+        error = this[validations[i]]();
+        if (error) {
+          this.result.push(error)
+          }
         }
-      return result;
+      return this.result;
     };
   }
 
@@ -30,11 +34,12 @@ $(document).ready(function() {
   };
 
   // Show errors for validations
-  var displayError = function(error) {
-    var display = " <span class='error small'>" + error + "</span>"
-    $('.clear').after(display);
-    $('.error').fadeOut(4000);
-    };
+  var displayError = function(errors) {
+    for (var i = 0; i < errors.length; i++) {
+      $('.clear').after(" <span class='error small'>" + errors[i] + "</span>");
+      $('.error').fadeOut(4000);
+    }
+  };
 
   // Show login and signup forms
   $('a.nav').on('click', function(event) {
@@ -44,18 +49,15 @@ $(document).ready(function() {
         $('.form').remove();
         $('#emptybox').append(response);
 
-        // Validate form email
-        $('input[type=email]').on('blur', function() {
-            var validate = new ValidateForm("email");
-            var error = validate.getError();
-            if (error.length > 0) { displayError(error); }
-        });
-
-        // Validate form password
-        $('input[type=password]').on('blur', function() {
-            var validate = new ValidateForm("passwordLength");
-            var error = validate.getError();
-            if (error.length > 0) { displayError(error); }
+        // Prevent submission, validate form
+        $('input[type=submit]').on('click', function(event) {
+          event.preventDefault();
+          var validate = new ValidateForm();
+          var errors = validate.getErrors();
+          if (errors.length > 0) { displayError(errors); }
+          if (errors.length === 0) { 
+            $('input[type=submit]').unbind('click'); 
+          }
         });
         
       });
