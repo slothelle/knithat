@@ -23,7 +23,7 @@ post '/login' do
     redirect '/user/' + user.id.to_s
     session[:user_id] = user.id if user
   else 
-    slim :authfail
+    slim :"errors/authfail", :layout => false
   end
 end
 

@@ -27,5 +27,5 @@ YarnWeight.create(weight: 'Aran')
 YarnWeight.create(weight: 'Bulky')
 YarnWeight.create(weight: 'Super Bulky')
 
-Garment.create(type: 'Hat')
-Garment.create(type: 'Shawl (Triangle)')
+Garment.create(category: 'Hat')
+Garment.create(category: 'Shawl (Triangle)')

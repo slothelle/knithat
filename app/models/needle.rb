@@ -1,3 +1,3 @@
 class Needle < ActiveRecord::Base
-  has_many :pattern
+  has_many :patterns
 end

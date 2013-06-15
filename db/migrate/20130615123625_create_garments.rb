@@ -1,7 +1,7 @@
 class CreateGarments < ActiveRecord::Migration
   def change
     create_table :garments do |t|
-      t.string :type
+      t.string :category
     end
   end
 end
