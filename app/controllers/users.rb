@@ -1,5 +1,5 @@
 get '/login' do
-  slim :_login
+  slim :_login, :layout => false
 end
 
 get '/logout' do
@@ -8,7 +8,7 @@ get '/logout' do
 end 
 
 get '/signup' do
-  slim :_signup
+  slim :_signup, :layout => false
 end 
 
 get '/user/:user_id' do

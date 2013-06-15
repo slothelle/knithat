@@ -1,14 +1,16 @@
 $serif: 'Bitter', Georgia, serif;
 $sanserif: 'Open Sans', Arial, sans-serif;
-$text-color-main: #444444;
-$text-color-darker: #333333;
+$text-color-main: #333333;
+$text-color-darker: #A60B1C;
 $nav-spacing: 20px;
-$accent-color-main: #CFCDFF;
-$accent-color-secondary: #DFE7FF;
-$small-font: 0.7em;
+$accent-color-main: #ACCFCC;
+$accent-color-secondary: #B8AE9C;
+$small-font: 0.8em;
+$background-color: #ffffff;
 
 body, html {
   height: 100%;
+  background: $background-color;
 }
 
 body {
@@ -20,6 +22,12 @@ body {
 
 p {
   font-family: $serif;
+  line-height: 1.4em;
+  text-align: justify;
+}
+
+.small {
+  font-size: $small-font;
 }
 
 a {
@@ -47,6 +55,9 @@ a {
   padding: $nav-spacing;
   padding-left: 80px;
   font-size: $small-font;
+  -webkit-box-shadow: 0px -2px 2px rgba(50, 50, 50, 0.25);
+  -moz-box-shadow:    0px -2px 2px rgba(50, 50, 50, 0.25);
+  box-shadow:         0px -2px 2px rgba(50, 50, 50, 0.25);
 }
 
 nav {
@@ -57,7 +68,16 @@ nav {
   left: 0px;
   margin: 0 auto;
   padding: $nav-spacing;
-  padding-right: 0px;
+  font-size: $small-font;
+  -webkit-box-shadow: 0px 2px 2px rgba(50, 50, 50, 0.25);
+  -moz-box-shadow:    0px 2px 2px rgba(50, 50, 50, 0.25);
+  box-shadow:         0px 2px 2px rgba(50, 50, 50, 0.25);
+}
+
+#emptybox {
+  margin-top: 90px;
+  margin-left: 80px;
+  float: left;
 }
 
 .nav {
@@ -77,11 +97,45 @@ li.first {
   border-left: 0;
   display: inline;
   margin: 0;
+  font-family: 'League Script';
+  font-weight: 700;
+  color: $text-color-darker;
+  font-size: 2em;
+}
+
+li.second {
+  border-left: 0;
+  display: inline;
+  margin: 0;
   padding-right: $nav-spacing;
 }
 
 h1 {
   font-weight: 800;
   color: $text-color-darker;
-  font-size: 3.5em;
+  font-size: 3em;
+}
+
+#title {
+  text-align: center;
+  font-family: 'League Script';
+  font-size: 8em;
+  font-weight: 700;
+  color: $text-color-darker;
+  margin-bottom: -20px;
+}
+
+input {
+  border: 1px solid $text-color-main;
+  font-size: $small-font;
+  color: $text-color-main;
+  padding: 5px;
+  margin-right: 8px;
+  margin-bottom: 5px;
+}
+
+.error {
+  background: $accent-color-main;
+  font-weight: 700;
+  padding: 3px;
 }
