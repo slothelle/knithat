@@ -20,7 +20,7 @@ end
 post '/login' do
   user = User.authenticate(params[:user]) 
   if user
-    redirect '/user' + user.id.to_s
+    redirect '/user/' + user.id.to_s
     session[:user_id] = user.id if user
   else 
     slim :authfail
