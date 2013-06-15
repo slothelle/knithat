@@ -13,20 +13,18 @@ html
   body
     nav
       ul.nav
-        li.first loveKnit
+        li.first <a href="/">loveKnit</a>
         - if logged_in?
           == slim :_nav_user
         - else 
           == slim :_nav_anon
+        li.nav <a href="/about">About</a>
+        li.nav <a href="/contact">Contact</a>
 
     #emptybox
     #container
       #body 
         == yield
-      #push
-
-    #footer
-      p &copy; 2013
 
 /! To use Ruby variables with Slim:
 /! = will escape and content won't render (code will run)

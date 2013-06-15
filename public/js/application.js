@@ -15,7 +15,7 @@ $(document).ready(function() {
   ValidateForm.prototype = {
     email: function(){
       var email = $('form input[type=email]').val();
-      var checkEmail = /.+\@.+\..+/;
+      var checkEmail = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i;
       if (!checkEmail.test(email)) {
         return "Must be a valid email address!";
       }

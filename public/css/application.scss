@@ -40,24 +40,8 @@ a {
   padding-top: 70px;
   padding-bottom: 20px;
   width: 700px;
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin: 0 auto -30px;
-}
-
-#footer, #push {
-  height: 30px;
-}
-
-#footer {
-  background: $accent-color-secondary;
-  padding: $nav-spacing;
-  padding-left: 80px;
-  font-size: $small-font;
-  -webkit-box-shadow: 0px -2px 2px rgba(50, 50, 50, 0.25);
-  -moz-box-shadow:    0px -2px 2px rgba(50, 50, 50, 0.25);
-  box-shadow:         0px -2px 2px rgba(50, 50, 50, 0.25);
+  margin: 0 auto;
+  z-index: 1;
 }
 
 nav {
@@ -119,10 +103,9 @@ h1 {
 #title {
   text-align: center;
   font-family: 'League Script';
-  font-size: 8em;
-  font-weight: 700;
+  font-size: 5em;
   color: $text-color-darker;
-  margin-bottom: -20px;
+  margin-bottom: -10px;
 }
 
 input {
