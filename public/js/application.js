@@ -15,7 +15,7 @@ $(document).ready(function() {
   ValidateForm.prototype = {
     email: function(){
       var email = $('form input[type=email]').val();
-      var checkEmail = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i;
+      var checkEmail = /.+\@.+\..+/;
       if (!checkEmail.test(email)) {
         return "Must be a valid email address!";
       }
@@ -48,14 +48,14 @@ $(document).ready(function() {
         $('input[type=email]').on('blur', function() {
             var validate = new ValidateForm("email");
             var error = validate.getError();
-            displayError(error);
+            if (error.length > 0) { displayError(error); }
         });
 
         // Validate form password
         $('input[type=password]').on('blur', function() {
             var validate = new ValidateForm("passwordLength");
             var error = validate.getError();
-            displayError(error);
+            if (error.length > 0) { displayError(error); }
         });
         
       });
