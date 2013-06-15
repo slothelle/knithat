@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include BCrypt
 
+  has_many :patterns
+
   validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
   validates_uniqueness_of :email, :message => "You're already signed up."
   validates_presence_of :email, :message => "Email required."
