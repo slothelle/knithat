@@ -1,3 +1,5 @@
+# Form helpers
+
 def find_garment_id_for(type)
   Garment.find_by_category(type).id
 end 
