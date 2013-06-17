@@ -18,13 +18,16 @@ def display_yarn_weights
   results.join
 end 
 
-# Create objects in database
+# Database helpers
 
-def generate_hat_from(hat, yarn_object)
+def create_hat_from(hat, yarn_object)
   hat = Pattern.create(hat)
   hat.yarn_id = yarn_object.id
 end
 
-def create_yarn_from(form_data)
-  Yarn.create(form_data)
+# Pattern view helpers
+
+def generate_hat_pattern(pattern_id)
+  pattern = Pattern.find(pattern_id)
+  @user = pattern.user_id
 end 
