@@ -49,15 +49,14 @@ $(document).ready(function() {
         $('.form').remove();
         $('#emptybox').append(response);
 
-        // Prevent submission, validate form
+        // Validate form 
         $('input[type=submit]').on('click', function(event) {
-          event.preventDefault();
           var validate = new ValidateForm();
           var errors = validate.getErrors();
-          if (errors.length > 0) { displayError(errors); }
-          if (errors.length === 0) { 
-            $('input[type=submit]').unbind('click'); 
-          }
+          if (errors.length > 0) { 
+            event.preventDefault();
+            displayError(errors); 
+            }
         });
         
       });

@@ -111,7 +111,8 @@ h1 {
 
 // Formats form text boxes
 input {
-  border: 1px solid $text-color-main;
+  border: 0;
+  background-color: #dddddd;
   font-size: $small-font;
   color: $text-color-main;
   padding: 5px;

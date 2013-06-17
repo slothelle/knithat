@@ -7,7 +7,7 @@
   
   form action="/pattern/new/hat" method="post" name="hat"
     p.separator Pattern name
-    input type="text" name="hat[name]" placeholder="A hat for me!" size="97%"
+    <input type="text" name="hat[name]" placeholder="A hat for me!" required size="97%">
   
     p.separator Needle size 
     <select name="hat[needle_id]">
@@ -21,8 +21,8 @@
         td Number of rows per inch
         td Number of stitches per inch
       tr
-        td <input type="number" name="hat[gauge_row_inch]" placeholder="7">
-        td <input type="number" name="hat[gauge_per_inch]" placeholder="6">
+        td <input type="number" name="hat[gauge_row_inch]" placeholder="7" required>
+        td <input type="number" name="hat[gauge_per_inch]" placeholder="6"required>
   
     p.separator Head circumference in inches
     p.small Select carefully! Assumptions are made based on your selection.
@@ -33,7 +33,7 @@
         td Children
         td Adults
       tr.small 
-        td <input type="radio" name="hat[hat_circumference]" value="15"> Preemie, 15 inches
+        td <input type="radio" name="hat[hat_circumference]" value="15" required> Preemie, 15 inches
         td <input type="radio" name="hat[hat_circumference]" value="20"> Child regular, 20 inches
         td <input type="radio" name="hat[hat_circumference]" value="22"> Women M or Men S, 22 inches 
       tr.small
@@ -51,9 +51,11 @@
       tr
         td.small Yarn brand
         td.small Yarn color
+        td.small Yardage
       tr
         td <input type="text" name="yarn[brand]" placeholder="Malabrigo">
         td <input type="text" name="yarn[color]" placeholder="Lettuce">
+        td <input type="number" name="yarn[yards]" placeholder="400">
 
     p.small Yarn weight
     == display_yarn_weights
