@@ -25,6 +25,10 @@ def create_hat_from(hat, yarn_object)
   hat.yarn_id = yarn_object.id
 end
 
+def create_yarn_from(yarn)
+  Yarn.create(yarn)
+end 
+
 # Pattern view helpers
 
 def generate_hat_pattern(pattern_id)
