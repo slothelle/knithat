@@ -1,3 +1,3 @@
 class YarnWeight < ActiveRecord::Base
-  has_many :yarns
+  has_many :yarn
 end
