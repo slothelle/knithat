@@ -4,7 +4,6 @@ class CreateYarns < ActiveRecord::Migration
       t.string :brand
       t.integer :yarn_weight_id
       t.string :color
-      t.integer :yards
     end 
   end
 end
