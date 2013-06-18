@@ -17,7 +17,7 @@ def initialize_size_class_from(pattern_obj)
 end
 
 class HatTemplate < PatternGenerator
-  attr_reader :cast_on, :ribbing, :slouch, :beanie, :height
+  attr_reader :cast_on, :ribbing, :slouch, :beanie
   def generate_hat_pattern
     get_gauge
     # estimated_yardage
@@ -44,57 +44,57 @@ end
 
 class HatAdult < HatTemplate
   def ribbing_rows
-    @ribbing_rows = "2 inches (#{(@row_1 * 2).round(0)} rows)"
+    "2 inches (#{(@row_1 * 2).round(0)} rows)"
   end 
   
   def body_height
-    @height = "7 inches (#{(@row_1 * 7).round(0)} rows)"
+    "7 inches (#{(@row_1 * 7).round(0)} rows)"
   end
 
   def crown_decreases
-    @crown = ""
+    # Magic
   end  
 end
 
 class HatChild < HatTemplate
   def ribbing_rows
-    @ribbing_rows = "1.5 inches (#{(@row_1*1.5).round(0)} rows)"
+    "1.5 inches (#{(@row_1*1.5).round(0)} rows)"
   end
 
   def body_height
-    @height = "5.5 inches (#{(@row_1 * 5.5).round(0)} rows)"
+    "5.5 inches (#{(@row_1 * 5.5).round(0)} rows)"
   end 
 
   def crown_decreases
-    @crown = ""
+    # Magic
   end  
 end
 
 class HatToddler < HatTemplate
   def ribbing_rows
-    @ribbing_rows = "1.5 inches (#{(@row_1*1.5).round(0)} rows)"
+    "1.5 inches (#{(@row_1*1.5).round(0)} rows)"
   end
 
   def body_height
-    @height = "4.5 inches (#{(@row_1 * 4.5).round(0)})"
+    "4.5 inches (#{(@row_1 * 4.5).round(0)})"
   end 
 
   def crown_decreases
-    @crown = ""
+    # Magic
   end  
 end
 
 class HatInfant < HatTemplate
   def ribbing_rows
-    @ribbing_rows = "1 inch (#{@row_1.round(0)} rows)" 
+    "1 inch (#{@row_1.round(0)} rows)" 
   end
 
   def body_height
-    @height = "3 inches (#{(@row_1 * 3).round(0)} rows)"
+    "3 inches (#{(@row_1 * 3).round(0)} rows)"
   end 
 
   def crown_decreases
-    @crown = ""
+    # Magic
   end  
 end
 
