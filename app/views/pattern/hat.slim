@@ -1,13 +1,71 @@
 - if current_user.id && @user_id
   h1 ==@title
 
-  p.separator Abbreviations
+  p
+    |
+      Standard hat pattern with just the teeniest bit of slouch. Optional instructions are provided for a regular beanie or a super slouchy cap.
+
+  p
+    |
+      <b>Note</b>: This pattern generator <i>does not</i> verify if you have enough yardage to complete the pattern at your given gauge. Always double check your yarn quantity against the yarn requirement estimate below before diving in!
+
+  h3 Needles
+  ul
+    li #{@larger_needle} 16" circular needle
+    li #{@smaller_needle} 16" circular needle (for ribbing)
+
+  h3 Gauge
+  p
+    |
+      #{@per_4} stitches per 4 inches/10 cms, #{@row_4} rows per 4 inches/10 cms.
+  
+  h3 Yarn information
+  p
+    |
+      #{@yarn_brand} in #{@yarn_color} (#{@yarn_weight}), approximately #{@yarn_yards} yards/#{@yarn_meters} meters.
+
+  h3 Estimated yardage
+  p.emphasis
+    | 
+      These are estimates based on the numbers provided for your gauge and yarn weight. 
+
+  p.highlight
+    |
+      Magic goes here. 
+
+  h3 Abbreviations
   ul.abbreviations
     == print_abbreviations
-  p.separator
+
+  h3 Instructions
+  p
+    |
+      Using #{@smaller_needle}, CO #{@cast_on} sts. PM and join for knitting in the round. Work in #{@ribbing} ribbing for #{@ribbing_rows}. Switch to #{@smaller_needle}.
+
+  p
+    |
+      <span class="emphasis">For a slouchy hat (optional):</span>
+      Next row: increase to #{@slouch} sts.
+
+  p
+    |
+      <span class="emphasis">For a beanie (optional):</span>
+      Next row: decrease to #{@beanie} sts.
+
+  p
+    |
+      Work in the round in your desired stitch motif for appromxiately #{@height}. 
+  
+  p.highlight
+    |
+      Crown decreases.
+
+  p
+    |
+      BO using your preferred method or cinch remaining sts together. Weave in ends and block if desired. 
 
 
-
+  p.small Doesn't look right? Click here to edit your input.
 
 
 - else

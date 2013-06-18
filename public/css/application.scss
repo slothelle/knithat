@@ -57,12 +57,14 @@ nav {
   box-shadow:         0px 2px 2px rgba(50, 50, 50, 0.25);
 }
 
+// Invisible box for AJAX login/signup magic
 #emptybox {
   margin-top: 90px;
   margin-left: 80px;
   float: left;
 }
 
+// Nav menu formatting
 .nav {
   display: inline;
   margin: 0;
@@ -93,11 +95,17 @@ li.second {
   padding-right: $nav-spacing;
 }
 
-// Generic header
+// Generic headers
 h1 {
   font-weight: 800;
   color: $text-color-darker;
-  font-size: 2.5em;
+  font-size: 2.25em;
+}
+
+h3 {
+  font-weight: 700;
+  font-family: $serif;
+  font-size: 1.5em;
 }
 
 // Fancy header
@@ -131,4 +139,16 @@ input {
 p.separator {
   border-top: 1px dotted $accent-color-main;
   padding-top: 20px;
+}
+
+// Emphasis for pattern view optional instructions
+.emphasis {
+  font-style: italic;
+  font-weight: 300;
+  font-family: $sanserif;
+}
+
+// Highlight catches attention for TBD items
+.highlight {
+  background: $accent-color-main;
 }
