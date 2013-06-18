@@ -4,7 +4,7 @@ HAT_SIZES = { infant: [13, 15],
           child: [17, 20, 21], 
           adult: [22, 23, 25] }
 
-def initialize_size_class_from(pattern_obj)
+def initialize_and_generate_hat(pattern_obj)
   if HAT_SIZES[:adult].include?(pattern_obj.hat_circumference)
     @hat = HatAdult.new(pattern_obj)
   elsif HAT_SIZES[:child].include?(pattern_obj.hat_circumference)
@@ -97,28 +97,3 @@ class HatInfant < HatTemplate
     # Magic
   end  
 end
-
-
-
-# def sizing_conditionals(circumference)
-#   if HAT_SIZES[:adult].include?(circumference)
-#     ribbing_rows_adult
-#     body_height_adult
-#     crown_decreases_adult
-#   elsif HAT_SIZES[:child].include?(circumference)
-#     ribbing_rows_child
-#     body_height_child
-#     crown_decreases_child
-#   elsif circumference == HAT_SIZES[:infant][1]
-#     ribbing_rows_infant
-#     body_height_toddler
-#     crown_decreases_toddler
-#   elsif circumference == HAT_SIZES[:infant][0]
-#     ribbing_rows_infant
-#     body_height_infant
-#     crown_decreases_infant
-#   end
-# end
-
-
-

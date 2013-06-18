@@ -50,6 +50,7 @@ class PatternGenerator
 
   def yarn_weight
     @yarn.yarn_weight.weight
+    # I think this association is wrong?
   end
 
   def yarn_yards
