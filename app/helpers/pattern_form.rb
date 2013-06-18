@@ -6,7 +6,7 @@ end
 
 def display_needles
   results = Needle.all.map do |n|
-    "<option value='needle[#{n.id}]'>#{n.size}</option>"
+    "<option value='hat[#{n.id}]'>#{n.size}</option>"
   end
   results.join
 end 
@@ -20,9 +20,8 @@ end
 
 # Database helpers
 
-def create_hat_from(hat, yarn_object)
-  hat = Pattern.create(hat)
-  hat.yarn_id = yarn_object.id
+def create_hat_from(hat, yarn_id)
+  Pattern.create(hat, yarn_id: yarn_id)
 end
 
 def create_yarn_from(yarn)

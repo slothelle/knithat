@@ -9,6 +9,6 @@ end
 
 post '/pattern/new/hat' do
   yarn = create_yarn_from(params[:yarn])
-  pattern = create_hat_from(params[:hat], yarn)
-  redirect '/pattern/hat/' + pattern.to_s
+  pattern = create_hat_from(params[:hat], yarn.id)
+  redirect '/pattern/hat/' + pattern.id.to_s
 end 
