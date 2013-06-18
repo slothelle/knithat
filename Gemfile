@@ -17,9 +17,11 @@ gem 'rake'
 gem 'slim'
 gem 'sass'
 
-gem 'shotgun'
+group :development do
+  gem 'shotgun'
+  gem 'faker'
+end 
 
 group :test do
-  gem 'faker'
   gem 'rspec'
 end
