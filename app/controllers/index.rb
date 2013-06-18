@@ -6,6 +6,10 @@ get '/about' do
   slim :about
 end 
 
+get '/contact' do 
+  slim :contact
+end 
+
 # Compiles Sass to CSS.
 get '/css/:name.css' do
   content_type 'text/css', :charset => 'utf-8'
