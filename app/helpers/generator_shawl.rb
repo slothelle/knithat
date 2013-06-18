@@ -1,3 +1,5 @@
+# Shawl patterns only
+
 SHAWL_ABBREVIATIONS = {ssk: 'slip, slip, knit'}
 
 def print_shawl_abbreviations

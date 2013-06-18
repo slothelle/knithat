@@ -1,3 +1,5 @@
+# General use, applies to all garment types
+
 ABBREVIATIONS = { k: 'knit', p: 'purl', sl: 'slip', pm: 'place marker', 
                   slm: 'slip marker', k2tog: 'knit 2 together', co: 'cast on',
                   bo: 'bind off', st: 'stitch', sts: 'stitches', rpt: 'repeat',

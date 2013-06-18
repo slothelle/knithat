@@ -1,4 +1,6 @@
-SIZES = { infant: [12, 16.5, 18.5], 
+# Hat patterns only
+
+HAT_SIZES = { infant: [12, 16.5, 18.5], 
           child: [20, 21], 
           adult: [22, 23, 25] }
 
@@ -31,21 +33,21 @@ def cast_on_ribbing(circumference, gauge_inch)
 end 
 
 def ribbing_rows(circumference, gauge_row_inch)
-  if SIZES[:infant].include?(circumference)
+  if HAT_SIZES[:infant].include?(circumference)
     @ribbing_rows = "1 inch (#{gauge_row_inch} rows)" 
-  elsif SIZES[:child].include?(circumference)
+  elsif HAT_SIZES[:child].include?(circumference)
     @ribbing_rows = "1.5 inches (#{gauge_row_inch*1.5} rows)"
-  elsif SIZES[:adult].include?(circumference)
+  elsif HAT_SIZES[:adult].include?(circumference)
     @ribbing_rows = "2 inches (#{gauge_row_inch*2} rows)"
   end
 end 
 
 def body_height(circumference, gauge_row_inch)
-  if SIZES[:infant].include?(circumference)
+  if HAT_SIZES[:infant].include?(circumference)
     @height = "TBD" 
-  elsif SIZES[:child].include?(circumference)
+  elsif HAT_SIZES[:child].include?(circumference)
     @height = "TBD"
-  elsif SIZES[:adult].include?(circumference)
+  elsif HAT_SIZES[:adult].include?(circumference)
     @height = "6 inches (#{gauge_row_inch * 6} rows)"
   end
 end 
