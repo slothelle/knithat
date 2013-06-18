@@ -44,7 +44,7 @@ end
 
 def body_height(circumference, gauge_row_inch)
   if HAT_SIZES[:infant].include?(circumference)
-    @height = "TBD" 
+    @height = "3 inches (#{gauge_row_inch * 3} rows)" 
   elsif HAT_SIZES[:child].include?(circumference)
     @height = "TBD"
   elsif HAT_SIZES[:adult].include?(circumference)
@@ -53,5 +53,5 @@ def body_height(circumference, gauge_row_inch)
 end 
 
 def crown_decreases
-  # All math necessary for crown crown_decreases
+  # All math necessary for crown
 end 
