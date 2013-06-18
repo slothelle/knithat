@@ -4,6 +4,7 @@ ABBREVIATIONS = { k: 'knit', p: 'purl', sl: 'slip', pm: 'place marker',
                   rpts: 'repeats' }
 
 class PatternGenerator
+  attr_reader :row_4, :row_1, :per_4, :per_1
   def initialize(pattern_obj)
     @pattern = pattern_obj
   end 
@@ -15,17 +16,20 @@ class PatternGenerator
     legend.join
   end 
   
-  def get_title
-    @title = @pattern.name
+  def title
+    @pattern.name
   end 
   
-  def get_user
-    @user_id = @pattern.user_id
+  def user_id
+    @pattern.user_id
   end 
   
-  def select_needles
-    @larger_needle = Needle.find(@pattern.needle_id).size
-    @smaller_needle = Needle.find(@pattern.needle_id-1).size
+  def larger_needle
+    Needle.find(@pattern.needle_id).size
+  end 
+
+  def smaller_needle
+    Needle.find(@pattern.needle_id-1).size
   end 
   
   def get_gauge
@@ -33,18 +37,29 @@ class PatternGenerator
     @per_4 = @pattern.gauge_per_inch * 4
     @row_1 = @pattern.gauge_row_inch
     @per_1 = @pattern.gauge_per_inch
-  end 
-  
-  def get_yarn_info
-    yarn = Yarn.find(@pattern.yarn_id)
-    @yarn_brand = yarn.brand
-    @yarn_color = yarn.color
-    @yarn_weight = yarn.yarn_weight.weight
-    @yarn_yards = yarn.yards
-    @yarn_meters = (@yarn_yards * 0.914).round(0)
   end
-  
-  def estimated_yardage
-    # Make magic happen
+
+  def yarn
+    @yarn = Yarn.find(@pattern.yarn_id)
+  end
+
+  def yarn_brand
+    @yarn.brand
+  end
+
+  def yarn_color
+    @yarn.color
   end 
+
+  def yarn_weight
+    @yarn.yarn_weight.weight
+  end
+
+  def yard_yards
+    @yarn.yards
+  end
+
+  def yarn_meters
+    @yarn.yards * 0.914.round(0)
+  end  
 end 

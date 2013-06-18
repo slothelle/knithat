@@ -1,6 +1,8 @@
-- if current_user.id && @user_id
-  == PatternGeneratorHat.new()
-  h1 ==@title
+- if current_user
+  
+  = @hat.generate_hat_pattern
+
+  p#title == @hat.title
 
   p
     |
@@ -12,13 +14,13 @@
 
   h3 Needles
   ul
-    li #{@larger_needle} 16" circular needle
-    li #{@smaller_needle} 16" circular needle (for ribbing)
+    li #{@hat.larger_needle} 16" circular needle
+    li #{@hat.smaller_needle} 16" circular needle (for ribbing)
 
   h3 Gauge
   p
     |
-      #{@per_4} stitches per 4 inches/10 cms, #{@row_4} rows per 4 inches/10 cms.
+      #{@hat.per_4} stitches per 4 inches/10 cms, #{@hat.row_4} rows per 4 inches/10 cms.
   
   h3 Yarn information
   p
@@ -36,12 +38,12 @@
 
   h3 Abbreviations
   ul.abbreviations
-    == print_abbreviations
+    == @hat.print_abbreviations
 
   h3 Instructions
   p
     |
-      Using #{@smaller_needle}, CO #{@cast_on} sts. PM and join for knitting in the round. Work in #{@ribbing} ribbing for #{@ribbing_rows}. Switch to #{@smaller_needle}.
+      Using #{@hat.smaller_needle}, CO #{@cast_on} sts. PM and join for knitting in the round. Work in #{@ribbing} ribbing for #{@ribbing_rows}. Switch to #{@smaller_needle}.
 
   p
     |
@@ -68,7 +70,7 @@
   p.small Doesn't look right? Click here to edit your input.
 
 
-- else
-  p
-    |
-      Whoops! It doesn't look like this is your pattern. 
+/ - else
+/   p
+/     |
+/       Whoops! It doesn't look like this is your pattern. 
