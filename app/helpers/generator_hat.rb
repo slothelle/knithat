@@ -1,7 +1,7 @@
 # Hat patterns only
 
-HAT_SIZES = { infant: [12, 16.5, 18.5], 
-          child: [20, 21], 
+HAT_SIZES = { infant: [13, 15], 
+          child: [17, 20, 21], 
           adult: [22, 23, 25] }
 
 def generate_hat_pattern(pattern_id)
@@ -11,11 +11,9 @@ def generate_hat_pattern(pattern_id)
   select_needles(pattern.needle_id)
   get_gauge(pattern)
   get_yarn_info(pattern.yarn_id)
-  estimated_yardage
+  # estimated_yardage
   cast_on_ribbing(pattern.hat_circumference, pattern.gauge_per_inch)
-  ribbing_rows(pattern.hat_circumference, pattern.gauge_row_inch)
-  body_height(pattern.hat_circumference, pattern.gauge_row_inch)
-  crown_decreases
+  sizing_conditionals(pattern.hat_circumference)
 end
 
 def cast_on_ribbing(circumference, gauge_inch)
@@ -32,26 +30,66 @@ def cast_on_ribbing(circumference, gauge_inch)
   @beanie = (@cast_on * 0.90).round(0)
 end 
 
-def ribbing_rows(circumference, gauge_row_inch)
-  if HAT_SIZES[:infant].include?(circumference)
-    @ribbing_rows = "1 inch (#{gauge_row_inch} rows)" 
+def sizing_conditionals(circumference)
+  if HAT_SIZES[:adult].include?(circumference)
+    ribbing_rows_adult
+    body_height_adult
+    crown_decreases_adult
   elsif HAT_SIZES[:child].include?(circumference)
-    @ribbing_rows = "1.5 inches (#{gauge_row_inch*1.5} rows)"
-  elsif HAT_SIZES[:adult].include?(circumference)
-    @ribbing_rows = "2 inches (#{gauge_row_inch*2} rows)"
+    ribbing_rows_child
+    body_height_child
+    crown_decreases_child
+  elsif circumference == HAT_SIZES[:infant][1]
+    ribbing_rows_infant
+    body_height_toddler
+    crown_decreases_toddler
+  elsif circumference == HAT_SIZES[:infant][0]
+    ribbing_rows_infant
+    body_height_infant
+    crown_decreases_infant
   end
+end
+
+def ribbing_rows_infant
+  @ribbing_rows = "1 inch (#{gauge_row_inch.round(0)} rows)" 
+end
+
+def ribbing_rows_child
+  @ribbing_rows = "1.5 inches (#{(gauge_row_inch*1.5).round(0)} rows)"
+end
+
+def ribbing_rows_adult
+  @ribbing_rows = "2 inches (#{(gauge_row_inch * 2).round(0)} rows)"
 end 
 
-def body_height(circumference, gauge_row_inch)
-  if HAT_SIZES[:infant].include?(circumference)
-    @height = "3 inches (#{gauge_row_inch * 3} rows)" 
-  elsif HAT_SIZES[:child].include?(circumference)
-    @height = "TBD"
-  elsif HAT_SIZES[:adult].include?(circumference)
-    @height = "6 inches (#{gauge_row_inch * 6} rows)"
-  end
+def body_height_infant
+  @height = "3 inches (#{(gauge_row_inch * 3).round(0)} rows)"
 end 
 
-def crown_decreases
-  # All math necessary for crown
+def body_height_toddler
+  @height = "4.5 inches (#{(gauge_row_inch * 4.5).round(0)})"
 end 
+
+def body_height_child
+  @height = "5.5 inches (#{(gauge_row_inch * 5.5).round(0)} rows)"
+end 
+
+def body_height_adult
+  @height = "7 inches (#{(gauge_row_inch * 7).round(0)} rows)"
+end 
+
+def crown_decreases_infant
+  # Magic
+end
+
+def crown_decreases_toddler
+  # Magic
+end 
+
+def crown_decreases_child
+  # Magic
+end
+
+def crown_decreases_adult
+  # Magic
+end

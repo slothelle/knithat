@@ -1,9 +1,14 @@
 # General use, applies to all garment types
 
-ABBREVIATIONS = { k: 'knit', p: 'purl', sl: 'slip', pm: 'place marker', 
+
+class PatternGenerator
+  def initialize
+  ABBREVIATIONS = { k: 'knit', p: 'purl', sl: 'slip', pm: 'place marker', 
                   slm: 'slip marker', k2tog: 'knit 2 together', co: 'cast on',
                   bo: 'bind off', st: 'stitch', sts: 'stitches', rpt: 'repeat',
                   rpts: 'repeats' }
+  end 
+end 
 
 def print_abbreviations
   legend = ABBREVIATIONS.map do |abbrev, defi|
@@ -28,6 +33,8 @@ end
 def get_gauge(pattern_obj)
   @row_4 = pattern_obj.gauge_row_inch * 4
   @per_4 = pattern_obj.gauge_per_inch * 4
+  @row_1 = pattern_obj.gauge_row_inch
+  @per_1 = pattern_obj.gauge_per_inch
 end 
 
 def get_yarn_info(yarn_id)
