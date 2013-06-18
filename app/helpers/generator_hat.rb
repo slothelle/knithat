@@ -18,6 +18,7 @@ end
 
 class HatTemplate < PatternGenerator
   attr_reader :cast_on, :ribbing, :slouch, :beanie
+
   def generate_hat_pattern
     get_gauge
     # estimated_yardage
@@ -31,15 +32,19 @@ class HatTemplate < PatternGenerator
     raw = (@pattern.hat_circumference * @per_1 * 0.80).round(0)
     rounded = [(raw + 8 - (raw % 8)), (raw + 9 - (raw % 9))]
     if rounded.min % 8 == 0
-      @cast_on = raw 
+      @cast_on = rounded.min 
       @ribbing = "1x1 or 2x2 (k1, p1 or k2, p2)"
     elsif rounded.min % 9 == 0
-      @cast_on = raw
+      @cast_on = rounded.min
       @ribbing = "3x3 (k3, p3)"
     end 
     @slouch = (@cast_on * 1.25).round(0)
     @beanie = (@cast_on * 0.90).round(0)
   end
+
+  def estimated_yardage
+    # Constant table, or algorithm? 
+  end 
 end
 
 class HatAdult < HatTemplate

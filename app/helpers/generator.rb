@@ -5,6 +5,7 @@ ABBREVIATIONS = { k: 'knit', p: 'purl', sl: 'slip', pm: 'place marker',
 
 class PatternGenerator
   attr_reader :row_4, :row_1, :per_4, :per_1
+  
   def initialize(pattern_obj)
     @pattern = pattern_obj
     @yarn = Yarn.find(@pattern.yarn_id)
