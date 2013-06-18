@@ -14,13 +14,15 @@ def initialize_and_generate_hat(pattern_obj)
   elsif pattern_obj.hat_circumference == HAT_SIZES[:infant][0]
     @hat = HatInfant.new(pattern_obj)
   end
+  @hat.generate_hat_pattern
 end
 
 class HatTemplate < PatternGenerator
-  attr_reader :cast_on, :ribbing, :slouch, :beanie
+  attr_reader :cast_on, :ribbing
+
   def generate_hat_pattern
     get_gauge
-    # estimated_yardage
+    estimated_yardage
     cast_on_ribbing
     ribbing_rows
     body_height
@@ -31,15 +33,33 @@ class HatTemplate < PatternGenerator
     raw = (@pattern.hat_circumference * @per_1 * 0.80).round(0)
     rounded = [(raw + 8 - (raw % 8)), (raw + 9 - (raw % 9))]
     if rounded.min % 8 == 0
-      @cast_on = raw 
+      @cast_on = rounded.min 
       @ribbing = "1x1 or 2x2 (k1, p1 or k2, p2)"
     elsif rounded.min % 9 == 0
-      @cast_on = raw
+      @cast_on = rounded.min
       @ribbing = "3x3 (k3, p3)"
     end 
-    @slouch = (@cast_on * 1.25).round(0)
-    @beanie = (@cast_on * 0.90).round(0)
   end
+
+  def slouch
+    (@cast_on * 1.25).round(0)
+  end
+
+  def beanie
+    (@cast_on * 0.90).round(0)
+  end 
+
+  def estimated_yardage
+    # Constant table, or algorithm? 
+  end
+
+  def size
+    @pattern.hat_circumference
+  end
+
+  def ease
+    (@pattern.hat_circumference * 0.80).round(0)
+  end  
 end
 
 class HatAdult < HatTemplate

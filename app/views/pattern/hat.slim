@@ -1,7 +1,5 @@
 - if current_user
   
-  = @hat.generate_hat_pattern
-
   h1 == @hat.title
 
   p
@@ -12,9 +10,14 @@
     |
       <b>Note</b>: This pattern generator <i>does not</i> verify if you have enough yardage to complete the pattern at your given gauge. Always double check your yarn quantity against the yarn requirement estimate below before diving in!
 
+  h3 Finished size
+  p
+    |
+      #{@hat.size} inches finished circumference (#{@hat.ease} inch brim circumference with negative ease).
+
   h3 Needles
   ul
-    li #{@hat.larger_needle} 16" circular needle
+    li #{@hat.needle} 16" circular needle
     li #{@hat.smaller_needle} 16" circular needle (for ribbing)
 
   h3 Gauge
@@ -57,7 +60,7 @@
 
   p
     |
-      Work in the round in your desired stitch motif for appromxiately #{@hat.height}. 
+      Work in the round in your desired stitch motif for appromxiately #{@hat.body_height}. 
   
   p.highlight
     |
