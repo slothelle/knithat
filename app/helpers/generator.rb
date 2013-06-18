@@ -25,7 +25,7 @@ class PatternGenerator
     @pattern.user_id
   end 
   
-  def larger_needle
+  def needle
     Needle.find(@pattern.needle_id).size
   end 
 
