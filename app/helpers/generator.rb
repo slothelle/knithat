@@ -7,6 +7,7 @@ class PatternGenerator
   attr_reader :row_4, :row_1, :per_4, :per_1
   def initialize(pattern_obj)
     @pattern = pattern_obj
+    @yarn = Yarn.find(@pattern.yarn_id)
   end 
 
   def print_abbreviations
@@ -39,10 +40,6 @@ class PatternGenerator
     @per_1 = @pattern.gauge_per_inch
   end
 
-  def yarn
-    @yarn = Yarn.find(@pattern.yarn_id)
-  end
-
   def yarn_brand
     @yarn.brand
   end
@@ -55,11 +52,11 @@ class PatternGenerator
     @yarn.yarn_weight.weight
   end
 
-  def yard_yards
+  def yarn_yards
     @yarn.yards
   end
 
   def yarn_meters
-    @yarn.yards * 0.914.round(0)
+    (@yarn.yards * 0.914).round(0)
   end  
 end 

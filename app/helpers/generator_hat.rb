@@ -17,6 +17,7 @@ def initialize_size_class_from(pattern_obj)
 end
 
 class HatTemplate < PatternGenerator
+  attr_reader :cast_on, :ribbing, :slouch, :beanie, :height
   def generate_hat_pattern
     get_gauge
     # estimated_yardage

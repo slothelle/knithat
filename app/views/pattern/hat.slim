@@ -2,7 +2,7 @@
   
   = @hat.generate_hat_pattern
 
-  p#title == @hat.title
+  h1 == @hat.title
 
   p
     |
@@ -25,7 +25,7 @@
   h3 Yarn information
   p
     |
-      #{@yarn_brand} in #{@yarn_color} (#{@yarn_weight}), approximately #{@yarn_yards} yards/#{@yarn_meters} meters.
+      #{@hat.yarn_brand} in #{@hat.yarn_color} (#{@hat.yarn_weight}), approximately #{@hat.yarn_yards} yards/#{@hat.yarn_meters} meters.
 
   h3 Estimated yardage
   p.emphasis
@@ -43,25 +43,25 @@
   h3 Instructions
   p
     |
-      Using #{@hat.smaller_needle}, CO #{@cast_on} sts. PM and join for knitting in the round. Work in #{@ribbing} ribbing for #{@ribbing_rows}. Switch to #{@smaller_needle}.
+      Using #{@hat.smaller_needle}, CO #{@hat.cast_on} sts. PM and join for knitting in the round. Work in #{@hat.ribbing} ribbing for #{@hat.ribbing_rows}. Switch to #{@hat.smaller_needle}.
 
   p
     |
       <span class="emphasis">For a slouchy hat (optional):</span>
-      Next row: increase to #{@slouch} sts.
+      Next row: increase to #{@hat.slouch} sts.
 
   p
     |
       <span class="emphasis">For a beanie (optional):</span>
-      Next row: decrease to #{@beanie} sts.
+      Next row: decrease to #{@hat.beanie} sts.
 
   p
     |
-      Work in the round in your desired stitch motif for appromxiately #{@height}. 
+      Work in the round in your desired stitch motif for appromxiately #{@hat.height}. 
   
   p.highlight
     |
-      #{@crown}
+      Not done yet!
   p
     |
       BO using your preferred method or cinch remaining sts together. Weave in ends and block if desired. 
