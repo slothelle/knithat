@@ -3,7 +3,8 @@ get '/pattern/new' do
 end 
 
 get '/pattern/hat/:pattern_id' do 
-  generate_hat_pattern(params[:pattern_id])
+  pattern = Pattern.find(params[:pattern_id])
+  initialize_size_class_from(pattern)
   slim :"pattern/hat"
 end
 

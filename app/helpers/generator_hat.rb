@@ -4,17 +4,42 @@ HAT_SIZES = { infant: [13, 15],
           child: [17, 20, 21], 
           adult: [22, 23, 25] }
 
-def generate_hat_pattern(pattern_id)
-  pattern = Pattern.find(pattern_id)
-  get_title(pattern)
-  get_user(pattern)
-  select_needles(pattern.needle_id)
-  get_gauge(pattern)
-  get_yarn_info(pattern.yarn_id)
-  # estimated_yardage
-  cast_on_ribbing(pattern.hat_circumference, pattern.gauge_per_inch)
-  sizing_conditionals(pattern.hat_circumference)
+def initialize_size_class_from(pattern_obj)
+  if HAT_SIZES[:adult].include?(circumference)
+    HatAdult.new(pattern_obj)
+  elsif HAT_SIZES[:child].include?(circumference)
+    HatChild.new(pattern_obj)
+  elsif circumference == HAT_SIZES[:infant][1]
+    HatToddler.new(pattern_obj)
+  elsif circumference == HAT_SIZES[:infant][0]
+    HatInfant.new(pattern_obj)
+  end
 end
+
+class HatTemplate < PatternGenerator
+  def generate_hat_pattern
+    get_title
+    get_user
+    select_needles
+    get_gauge
+    get_yarn_info
+    # estimated_yardage
+    cast_on_ribbing
+  end
+end
+
+class HatAdult < HatTemplate
+end
+
+class HatToddler < HatTemplate
+end
+
+class HatChild < HatTemplate
+end
+
+class HatInfant < HatTemplate
+end
+
 
 def cast_on_ribbing(circumference, gauge_inch)
   raw = (circumference * gauge_inch * 0.80).round(0)
