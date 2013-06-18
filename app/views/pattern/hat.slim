@@ -1,6 +1,13 @@
 - if current_user.id && @user_id
   h1 ==@title
 
+  p.separator Abbreviations
+  ul.abbreviations
+    == print_abbreviations
+  p.separator
+
+
+
 
 
 - else
