@@ -1,5 +1,5 @@
 class UpdateYarnWeights < ActiveRecord::Migration
   def change
-    add_column :yarn_weights, :yardage_factor, :integer 
+    add_column :yarn_weights, :yardage_factor, :string 
   end
 end

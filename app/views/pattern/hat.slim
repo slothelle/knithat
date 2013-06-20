@@ -34,13 +34,12 @@
       #{@hat.yarn_brand} in #{@hat.yarn_color} (#{@hat.yarn_weight}), approximately #{@hat.yarn_yards} yards/#{@hat.yarn_meters} meters.
 
   h3 Estimated yardage
+  p 
+    |
+      My big computer brain thinks that you'll need #{@hat.estimated_yardage} yards/#{@hat.estimated_meters} meters of #{@hat.yarn_weight} weight yarn to complete this project.
   p.emphasis
     | 
-      These are estimates based on the numbers provided for your gauge and yarn weight. 
-
-  p.highlight
-    |
-      Magic goes here. 
+      These are estimates based on the numbers provided for your gauge and yarn weight.  
 
   h3 Abbreviations
   ul.abbreviations
@@ -58,7 +57,7 @@
 
   p.optionalsubtitle Increases, slouchy hat: increase evenly to #{@hat.slouch} sts. Proceed to hat body.
 
-  p.optionalsubtitle Decreases, beanie: decrease to #{@hat.beanie} sts. Proceed to hat body.
+  p.optionalsubtitle Decreases, beanie: decrease evenly to #{@hat.beanie} sts. Proceed to hat body.
 
   p.subtitle Hat Body
   p
@@ -91,10 +90,8 @@
       Cinch remaining sts together. Weave in ends and block if desired. 
 
 
-  p.small Doesn't look right? Click here to edit your input.
-
-
-/ - else
-/   p
-/     |
-/       Whoops! It doesn't look like this is your pattern. 
+- else
+  p#title Whoops!
+  p
+    |
+      It doesn't look like this is your pattern. 

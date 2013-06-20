@@ -17,8 +17,10 @@ class HatGeneratorTemplate < PatternGenerator
 
   def generate_hat_pattern
     get_gauge
-    estimated_yardage
+    set_estimated_yardage_variables
+    surface_area
     find_stitch_multiple
+
     if find_stitch_multiple == 8
       ribbing_multiple_8
       @num_decreases = 8
@@ -26,6 +28,7 @@ class HatGeneratorTemplate < PatternGenerator
       ribbing_multiple_9
       @num_decreases = 9
     end 
+
     ribbing_rows
     body_height
   end
@@ -65,10 +68,6 @@ class HatGeneratorTemplate < PatternGenerator
 
   def beanie_first_decrease
     (@beanie / @num_decreases) - 1
-  end
-
-  def estimated_yardage
-    
   end
 
   def surface_area
