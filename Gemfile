@@ -1,5 +1,8 @@
 source :rubygems
 
+ruby '1.9.3'
+gem 'rake'
+
 # PostgreSQL driver
 gem 'pg'
 
@@ -10,16 +13,16 @@ gem 'sinatra-contrib'
 # Use Thin for our web server
 gem 'thin'
 
+# Active Record magic
 gem 'activesupport'
 gem 'activerecord'
+
+# Personal add-ons
 gem 'bcrypt-ruby'
-gem 'rake'
 gem 'slim'
 gem 'sass'
 
-gem 'shotgun'
-
-group :test do
+group :development do
+  gem 'shotgun'
   gem 'faker'
-  gem 'rspec'
 end
