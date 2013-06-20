@@ -1,23 +1,6 @@
 # Hat patterns only
 
-HAT_SIZES = { infant: [13, 15], 
-          child: [17, 20, 21], 
-          adult: [22, 23, 25] }
-
-def initialize_and_generate_hat(pattern_obj)
-  if HAT_SIZES[:adult].include?(pattern_obj.hat_circumference)
-    @hat = HatAdult.new(pattern_obj)
-  elsif HAT_SIZES[:child].include?(pattern_obj.hat_circumference)
-    @hat = HatChild.new(pattern_obj)
-  elsif pattern_obj.hat_circumference == HAT_SIZES[:infant][1]
-    @hat = HatToddler.new(pattern_obj)
-  elsif pattern_obj.hat_circumference == HAT_SIZES[:infant][0]
-    @hat = HatInfant.new(pattern_obj)
-  end
-  @hat.generate_hat_pattern
-end
-
-class HatTemplate < PatternGenerator
+class HatGeneratorTemplate < PatternGenerator
   attr_reader :cast_on, :ribbing
 
   def generate_hat_pattern
@@ -62,7 +45,7 @@ class HatTemplate < PatternGenerator
   end  
 end
 
-class HatAdult < HatTemplate
+class HatAdult < HatGeneratorTemplate
   def ribbing_rows
     "2 inches (#{(@row_1 * 2).round(0)} rows)"
   end 
@@ -76,7 +59,7 @@ class HatAdult < HatTemplate
   end  
 end
 
-class HatChild < HatTemplate
+class HatChild < HatGeneratorTemplate
   def ribbing_rows
     "1.5 inches (#{(@row_1*1.5).round(0)} rows)"
   end
@@ -90,7 +73,7 @@ class HatChild < HatTemplate
   end  
 end
 
-class HatToddler < HatTemplate
+class HatToddler < HatGeneratorTemplate
   def ribbing_rows
     "1.5 inches (#{(@row_1*1.5).round(0)} rows)"
   end
@@ -104,7 +87,7 @@ class HatToddler < HatTemplate
   end  
 end
 
-class HatInfant < HatTemplate
+class HatInfant < HatGeneratorTemplate
   def ribbing_rows
     "1 inch (#{@row_1.round(0)} rows)" 
   end
