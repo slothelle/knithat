@@ -3,6 +3,11 @@
 class HatGeneratorTemplate < PatternGenerator
   attr_reader :cast_on, :ribbing
 
+  def initialize(user_input)
+    @pattern = user_input
+    @yarn = Yarn.find(@pattern.yarn_id)
+  end
+
   def generate_hat_pattern
     get_gauge
     estimated_yardage

@@ -3,8 +3,9 @@ get '/pattern/new' do
 end 
 
 get '/pattern/hat/:pattern_id' do 
-  pattern = Pattern.find(params[:pattern_id])
-  initialize_and_generate_hat(pattern)
+  user_input = Pattern.find(params[:pattern_id])
+  pattern = PatternGenerator.new()
+  pattern.initialize_and_generate_hat(user_input)
   slim :"pattern/hat"
 end
 
