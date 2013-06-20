@@ -1,9 +1,15 @@
-ABBREVIATIONS = { k: 'knit', p: 'purl', sl: 'slip', pm: 'place marker', 
-                  slm: 'slip marker', k2tog: 'knit 2 together', co: 'cast on',
-                  bo: 'bind off', st: 'stitch', sts: 'stitches', rpt: 'repeat',
-                  rpts: 'repeats' }
+
+module PatternViewHelper
+  ABBREVIATIONS = { k: 'knit', p: 'purl', sl: 'slip', pm: 'place marker', 
+                    slm: 'slip marker', k2tog: 'knit 2 together', co: 'cast on',
+                    bo: 'bind off', st: 'stitch', sts: 'stitches', rpt: 'repeat',
+                    rpts: 'repeats' }
+
+end 
 
 class PatternGenerator
+  include PatternViewHelper 
+  
   attr_reader :row_4, :row_1, :per_4, :per_1
   
   def initialize(pattern_obj)
@@ -12,8 +18,8 @@ class PatternGenerator
   end 
 
   def print_abbreviations
-    legend = ABBREVIATIONS.map do |abbrev, defi|
-      "<li class='abbreviations'>#{abbrev}: #{defi}</li>"
+    legend = ABBREVIATIONS.map do |abbrev, definition|
+      "<li class='abbreviations'>#{abbrev}: #{definition}</li>"
     end
     legend.join
   end 
@@ -61,6 +67,4 @@ class PatternGenerator
   def yarn_meters
     (@yarn.yards * 0.914).round(0)
   end  
-
-  
 end 
