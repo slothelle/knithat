@@ -61,4 +61,6 @@ class PatternGenerator
   def yarn_meters
     (@yarn.yards * 0.914).round(0)
   end  
+
+  
 end 
