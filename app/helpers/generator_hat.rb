@@ -3,11 +3,6 @@
 class HatGeneratorTemplate < PatternGenerator
   attr_reader :cast_on, :ribbing
 
-  def initialize(user_input)
-    @pattern = user_input
-    @yarn = Yarn.find(@pattern.yarn_id)
-  end
-
   def generate_hat_pattern
     get_gauge
     estimated_yardage
@@ -18,7 +13,7 @@ class HatGeneratorTemplate < PatternGenerator
   end
 
   def cast_on_ribbing
-    raw = (@pattern.hat_circumference * @per_1 * 0.80).round(0)
+    raw = (@user_input.hat_circumference * @per_1 * 0.80).round(0)
     rounded = [(raw + 8 - (raw % 8)), (raw + 9 - (raw % 9))]
     if rounded.min % 8 == 0
       @cast_on = rounded.min 
@@ -42,11 +37,11 @@ class HatGeneratorTemplate < PatternGenerator
   end
 
   def size
-    @pattern.hat_circumference
+    @user_input.hat_circumference
   end
 
   def ease
-    (@pattern.hat_circumference * 0.80).round(0)
+    (@user_input.hat_circumference * 0.80).round(0)
   end  
 end
 
