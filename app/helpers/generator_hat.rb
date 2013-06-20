@@ -68,8 +68,12 @@ class HatGeneratorTemplate < PatternGenerator
   end
 
   def estimated_yardage
-    # Constant table, or algorithm? 
+    
   end
+
+  def surface_area
+    @square_inches = (3.142 * @radius * @slope) + (3.142 * @radius * @radius)
+  end 
 
   def size
     @user_input.hat_circumference
@@ -101,6 +105,11 @@ class HatGeneratorTemplate < PatternGenerator
 end
 
 class HatAdult < HatGeneratorTemplate
+  def set_estimated_yardage_variables
+    @radius = @user_input.hat_circumference/(2*3.142)
+    @slope = 11.5 # ribbing_rows + body_height + decrease estimate
+  end 
+
   def ribbing_rows
     "2 inches (#{(@row_1 * 2).round(0)} rows)"
   end 
@@ -108,7 +117,6 @@ class HatAdult < HatGeneratorTemplate
   def body_height
     "6.5 inches (#{(@row_1 * 6.5).round(0)} rows)"
   end
-
 end
 
 class HatChild < HatGeneratorTemplate
