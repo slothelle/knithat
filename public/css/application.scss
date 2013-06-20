@@ -141,11 +141,21 @@ p.separator {
   padding-top: 20px;
 }
 
-// Emphasis for pattern view optional instructions
+// Accents for pattern views
 .emphasis {
   font-style: italic;
   font-weight: 300;
   font-family: $sanserif;
+}
+
+.subtitle {
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.optionalsubtitle {
+  font-weight: 400;
+  font-style: italic;
 }
 
 // Highlight catches attention for TBD items

@@ -13,18 +13,18 @@ def initialize_and_generate_hat(user_input)
 end
 
 class HatGeneratorTemplate < PatternGenerator
-  attr_reader :cast_on, :ribbing
+  attr_reader :cast_on, :ribbing, :crown_decreases
 
   def generate_hat_pattern
     get_gauge
     estimated_yardage
     find_stitch_multiple
     if find_stitch_multiple == 8
-      cast_on_ribbing_8
-      crown_decreases_8
+      ribbing_multiple_8
+      @num_decreases = 8
     elsif find_stitch_multiple == 9
-      cast_on_ribbing_9
-      crown_decreases_9
+      ribbing_multiple_9
+      @num_decreases = 9
     end 
     ribbing_rows
     body_height
@@ -34,32 +34,38 @@ class HatGeneratorTemplate < PatternGenerator
     raw = (@user_input.hat_circumference * @per_1 * 0.80).round(0)
     rounded = [(raw + 8 - (raw % 8)), (raw + 9 - (raw % 9))]
     if rounded.min % 8 == 0
-      @rounded_input = rounded.min
+      @cast_on = rounded.min
       multiple = 8 
     elsif rounded.min % 9 == 0
-      @rounded_input = rounded.min
+      @cast_on = rounded.min
       multiple = 9
     end
     multiple
   end 
 
-  def cast_on_ribbing_8
-    @cast_on = @rounded_input 
+  def ribbing_multiple_8
     @ribbing = "1x1 or 2x2 (k1, p1 or k2, p2)" 
   end
 
-  def cast_on_ribbing_9
-    @cast_on = @rounded_input
+  def ribbing_multiple_9
     @ribbing = "3x3 (k3, p3)"
   end 
 
   def slouch
-    (@cast_on * 1.25).round(0)
+    @slouch = (@cast_on * 1.25).round(0)
+  end
+
+  def slouch_first_decrease
+    (@slouch / @num_decreases) - 1
   end
 
   def beanie
-    (@cast_on * 0.90).round(0)
-  end 
+    @beanie = (@cast_on * 0.90).round(0)
+  end
+
+  def beanie_first_decrease
+    (@beanie / @num_decreases) - 1
+  end
 
   def estimated_yardage
     # Constant table, or algorithm? 
@@ -73,12 +79,24 @@ class HatGeneratorTemplate < PatternGenerator
     (@user_input.hat_circumference * 0.80).round(0)
   end  
 
-  def crown_decreases_8
-    @cast_on / 8
-  end  
-
-  def crown_decreases_9
-    # Magic
+  # TODO: Cut this up. It's ugly.
+  def crown_decreases
+    num_sts = (@cast_on / @num_decreases)
+    spacer_sts = num_sts - 2
+    num_repeats = num_sts - 1
+    sts_remain = @cast_on
+    counter = 1
+    instructions = []
+    (num_repeats-1).times do 
+      instructions << "Row #{counter}: * k#{spacer_sts}, k2tog, rpt from * to end (#{sts_remain} sts remaining).<br>"
+      instructions << "Row #{counter+=1}: k all sts.<br>"
+      spacer_sts-=1
+      sts_remain-=@num_decreases
+      counter+=1
+    end
+    instructions << "Next row: k2tog #{@num_decreases} times (#{sts_remain} sts remaining).<br>"
+    instructions << "Next row: k2tog #{@num_decreases} times (#{@num_decreases} sts remaining)."
+    instructions.join
   end  
 end
 
@@ -88,7 +106,7 @@ class HatAdult < HatGeneratorTemplate
   end 
   
   def body_height
-    "7 inches (#{(@row_1 * 7).round(0)} rows)"
+    "6.5 inches (#{(@row_1 * 6.5).round(0)} rows)"
   end
 
 end
@@ -99,7 +117,7 @@ class HatChild < HatGeneratorTemplate
   end
 
   def body_height
-    "5.5 inches (#{(@row_1 * 5.5).round(0)} rows)"
+    "5 inches (#{(@row_1 * 5).round(0)} rows)"
   end  
 end
 
@@ -109,7 +127,7 @@ class HatToddler < HatGeneratorTemplate
   end
 
   def body_height
-    "4.5 inches (#{(@row_1 * 4.5).round(0)})"
+    "4 inches (#{(@row_1 * 4).round(0)})"
   end  
 end
 
@@ -119,6 +137,6 @@ class HatInfant < HatGeneratorTemplate
   end
 
   def body_height
-    "3 inches (#{(@row_1 * 3).round(0)} rows)"
+    "2.5 inches (#{(@row_1 * 2.5).round(0)} rows)"
   end 
 end

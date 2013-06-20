@@ -1,15 +1,17 @@
 - if current_user
   
   #{puts @hat.class}
-  h1 == @hat.title
+  p#title == @hat.title
 
+  p.subtitle Pattern Description
   p
     |
-      Standard hat pattern with just the teeniest bit of slouch. Optional instructions are provided for a regular beanie or a super slouchy cap.
+      Unisex hat with negative ease along the brim, and a slight slouch to the body (nothing too hipstery). Optional instructions are provided for a regular beanie or a slouchy cap.
 
+  p.subtitle Very Important
   p
     |
-      <b>Note</b>: This pattern generator <i>does not</i> verify if you have enough yardage to complete the pattern at your given gauge. Always double check your yarn quantity against the yarn requirement estimate below before diving in!
+      This pattern generator <i>does not</i> verify if you have enough yardage to complete the pattern at your given gauge. Always double check your yarn quantity against the yarn requirement estimate below before diving in! Read the <a href="/technical">pattern notes</a> for more information.
 
   h3 Finished size
   p
@@ -45,30 +47,48 @@
     == @hat.print_abbreviations
 
   h3 Instructions
+
+  p.subtitle Set Up
   p
     |
-      Using #{@hat.smaller_needle}, CO #{@hat.cast_on} sts. PM and join for knitting in the round. Work in #{@hat.ribbing} ribbing for #{@hat.ribbing_rows}. Switch to #{@hat.needle}.
+      Using #{@hat.smaller_needle}, CO #{@hat.cast_on} sts. PM and join for knitting in the round. Work in #{@hat.ribbing} ribbing for #{@hat.ribbing_rows}. Switch to #{@hat.needle}. 
 
-  p
-    |
-      <span class="emphasis">For a slouchy hat (optional):</span>
-      Next row: increase to #{@hat.slouch} sts.
+  p For regular hats, proceed to hat body.
+  p For a slouchy hat or a beanie, work the increases or decreases listed below before proceeding to hat body.
 
-  p
-    |
-      <span class="emphasis">For a beanie (optional):</span>
-      Next row: decrease to #{@hat.beanie} sts.
+  p.optionalsubtitle Increases, slouchy hat: increase evenly to #{@hat.slouch} sts. Proceed to hat body.
 
+  p.optionalsubtitle Decreases, beanie: decrease to #{@hat.beanie} sts. Proceed to hat body.
+
+  p.subtitle Hat Body
   p
     |
       Work in the round in your desired stitch motif for appromxiately #{@hat.body_height}. 
   
-  p.highlight
-    |
-      Not done yet!
+
+
+  p.subtitle Crown Decreases
+  
+  p.optionalsubtitle Crown Decreases, slouchy hats
   p
     |
-      BO using your preferred method or cinch remaining sts together. Weave in ends and block if desired. 
+      Work first decrease row as: * k#{@hat.slouch_first_decrease}, k2tog, rpt from * to end.<br>
+      Next decrease row: * k#{@hat.slouch_first_decrease-1}, k2tog, rpt from * to end.<br>
+      Continue in this manner until you have #{@hat.cast_on} sts. Begin working from the regular crown decrease instructions (below). 
+
+  p.optionalsubtitle Crown Decreases, beanies
+  p
+    |
+      Work the regular crown decrease instructions (below), beginning with the row that starts with k#{@hat.beanie_first_decrease}. 
+  
+  p.optionalsubtitle Crown Decreases, regular hats
+  == @hat.crown_decreases
+
+  
+
+  p
+    |
+      Cinch remaining sts together. Weave in ends and block if desired. 
 
 
   p.small Doesn't look right? Click here to edit your input.
