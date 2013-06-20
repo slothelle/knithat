@@ -9,25 +9,10 @@ module SizeAbbrevsConstants
                   adult: [22, 23, 25] }
 end 
 
-# Wrap this in a module later?
-def initialize_and_generate_hat(user_input)
-  if SizeAbbrevsConstants::HAT_SIZES[:adult].include?(user_input.hat_circumference)
-    @hat = HatAdult.new(user_input)
-  elsif SizeAbbrevsConstants::HAT_SIZES[:child].include?(user_input.hat_circumference)
-    @hat = HatChild.new(user_input)
-  elsif user_input.hat_circumference == SizeAbbrevsConstants::HAT_SIZES[:infant][1]
-    @hat = HatToddler.new(user_input)
-  elsif user_input.hat_circumference == SizeAbbrevsConstants::HAT_SIZES[:infant][0]
-    @hat = HatInfant.new(user_input)
-  end
-  @hat.generate_hat_pattern
-end
-
 # Too many responsibilities!!!
 # TODO: split view helpers (ex: print_abbreivations), lookup, algorithms
 class PatternGenerator
-  include SizeAbbrevsConstants 
-
+  include SizeAbbrevsConstants
   attr_reader :row_4, :row_1, :per_4, :per_1, :display
   
   def initialize(user_input)
@@ -74,8 +59,8 @@ class PatternGenerator
   end 
 
   def yarn_weight
-    @yarn.yarn_weight.weight
     # I think this association is wrong?
+    @yarn.yarn_weight.weight
   end
 
   def yarn_yards
