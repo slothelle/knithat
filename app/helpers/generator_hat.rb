@@ -34,16 +34,16 @@ class HatGeneratorTemplate < PatternGenerator
   end
 
   def find_stitch_multiple
-    raw = (@user_input.hat_circumference * @per_1 * 0.80).round(0)
+    raw = (@user_input.hat_circumference * @per_1 * 0.85).round(0)
     rounded = [(raw + 8 - (raw % 8)), (raw + 9 - (raw % 9))]
     if rounded.min % 8 == 0
       @cast_on = rounded.min
-      multiple = 8 
+      @multiple = 8 
     elsif rounded.min % 9 == 0
       @cast_on = rounded.min
-      multiple = 9
+      @multiple = 9
     end
-    multiple
+    @multiple
   end 
 
   def ribbing_multiple_8
@@ -55,7 +55,8 @@ class HatGeneratorTemplate < PatternGenerator
   end 
 
   def slouch
-    @slouch = (@cast_on * 1.25).round(0)
+    raw = @cast_on * 1.25
+    @slouch = (raw + @multiple - (raw % @multiple)).round(0)
   end
 
   def slouch_first_decrease
@@ -63,11 +64,12 @@ class HatGeneratorTemplate < PatternGenerator
   end
 
   def beanie
-    @beanie = (@cast_on * 0.90).round(0)
+    raw = @cast_on * 0.90
+    @beanie = (raw + @multiple - (raw % @multiple)).round(0)
   end
 
   def beanie_first_decrease
-    (@beanie / @num_decreases) - 1
+    (@beanie / @num_decreases) - 2
   end
 
   def surface_area
@@ -79,7 +81,7 @@ class HatGeneratorTemplate < PatternGenerator
   end
 
   def ease
-    (@user_input.hat_circumference * 0.80).round(0)
+    (@user_input.hat_circumference * 0.85).round(0)
   end  
 
   # TODO: Cut this up. It's ugly.
@@ -87,18 +89,17 @@ class HatGeneratorTemplate < PatternGenerator
     num_sts = (@cast_on / @num_decreases)
     spacer_sts = num_sts - 2
     num_repeats = num_sts - 1
-    sts_remain = @cast_on
+    sts_remain = @cast_on - @num_decreases
     counter = 1
     instructions = []
     (num_repeats-1).times do 
       instructions << "Row #{counter}: * k#{spacer_sts}, k2tog, rpt from * to end (#{sts_remain} sts remaining).<br>"
       instructions << "Row #{counter+=1}: k all sts.<br>"
-      spacer_sts-=1
       sts_remain-=@num_decreases
+      spacer_sts-=1
       counter+=1
     end
-    instructions << "Next row: k2tog #{@num_decreases} times (#{sts_remain} sts remaining).<br>"
-    instructions << "Next row: k2tog #{@num_decreases} times (#{@num_decreases} sts remaining)."
+    instructions << "Next row: k2tog #{@num_decreases} times (#{sts_remain} sts remaining)."
     instructions.join
   end  
 end
