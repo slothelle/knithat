@@ -40,7 +40,11 @@ class PatternGenerator
   end 
 
   def smaller_needle
-    Needle.find(@user_input.needle_id-1).size
+    if @user_input.needle_id-1 == 0
+      needle
+    else 
+      Needle.find(@user_input.needle_id-1).size
+    end 
   end 
   
   def get_gauge
