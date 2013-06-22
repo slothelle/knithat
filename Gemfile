@@ -1,7 +1,7 @@
 source :rubygems
 
 ruby '1.9.3'
-gem 'rake'
+gem 'rake', '~> 10.1.0'
 
 # PostgreSQL driver
 gem 'pg'
