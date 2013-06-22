@@ -31,12 +31,12 @@
   h3 Yarn information
   p
     |
-      #{@hat.yarn_brand} in #{@hat.yarn_color} (#{@hat.yarn_weight}), approximately #{@hat.yarn_yards} yards/#{@hat.yarn_meters} meters.
+      #{@hat.yarn_brand} in #{@hat.yarn_color} (#{@hat.yarn_weight}), approximately #{@hat.yarn_yards} yards/#{@hat.to_meters(@hat.yarn_yards)} meters.
 
   h3 Estimated yardage
   p 
     |
-      My big computer brain calculates that you'll need #{@hat.estimated_yardage} yards/#{@hat.estimated_meters} meters of #{@hat.yarn_weight} weight yarn to complete this project.
+      My big computer brain calculates that you'll need #{@hat.estimated_yardage} yards/#{@hat.to_meters(@hat.estimated_yardage)} meters of #{@hat.yarn_weight} weight yarn to complete this project.
   p.emphasis
     | 
       These are estimates based on your gauge and selected yarn weight. It includes approximately 10% wiggle room.   

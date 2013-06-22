@@ -71,16 +71,11 @@ class PatternGenerator
     @yarn.yards
   end
 
-  # This conversaion should be pulled out into its own method, I use it below also
-  def yarn_meters
-    (@yarn.yards * 0.914).round(0)
-  end 
-
   def estimated_yardage
     @yardage = (@yarn.yarn_weight.yardage_factor.to_f * @square_inches * 1.1).round(0)
   end
 
-  def estimated_meters
-    (@yardage * 0.914).round(0)
-  end 
+  def to_meters(yards)
+    (yards * 0.914).round(0)
+  end  
 end 
