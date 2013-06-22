@@ -107,7 +107,7 @@ end
 class HatAdult < HatGeneratorTemplate
   def set_estimated_yardage_variables
     @radius = @user_input.hat_circumference/(2*3.142)
-    @slope = 11.5 # ribbing_rows + body_height + decrease estimate
+    @slope = 18 # ribbing_rows + body_height + decrease estimate
   end 
 
   def ribbing_rows
@@ -120,6 +120,11 @@ class HatAdult < HatGeneratorTemplate
 end
 
 class HatChild < HatGeneratorTemplate
+  def set_estimated_yardage_variables
+    @radius = @user_input.hat_circumference/(2*3.142)
+    @slope = 14.5
+  end 
+
   def ribbing_rows
     "1.5 inches (#{(@row_1*1.5).round(0)} rows)"
   end
@@ -130,6 +135,11 @@ class HatChild < HatGeneratorTemplate
 end
 
 class HatToddler < HatGeneratorTemplate
+  def set_estimated_yardage_variables
+    @radius = @user_input.hat_circumference/(2*3.142)
+    @slope = 8.5
+  end 
+
   def ribbing_rows
     "1.5 inches (#{(@row_1*1.5).round(0)} rows)"
   end
@@ -140,6 +150,11 @@ class HatToddler < HatGeneratorTemplate
 end
 
 class HatInfant < HatGeneratorTemplate
+  def set_estimated_yardage_variables
+    @radius = @user_input.hat_circumference/(2*3.142)
+    @slope = 6 # ribbing_rows + body_height + decrease estimate
+  end 
+
   def ribbing_rows
     "1 inch (#{@row_1.round(0)} rows)" 
   end

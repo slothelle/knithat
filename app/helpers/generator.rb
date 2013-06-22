@@ -73,7 +73,7 @@ class PatternGenerator
   end 
 
   def estimated_yardage
-    @yardage = (@yarn.yarn_weight.yardage_factor.to_f * @square_inches).round(0)
+    @yardage = (@yarn.yarn_weight.yardage_factor.to_f * @square_inches * 1.1).round(0)
   end
 
   def estimated_meters
