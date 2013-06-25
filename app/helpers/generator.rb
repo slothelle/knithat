@@ -1,24 +1,24 @@
 module SizeAbbrevsConstants
-  ABBREVIATIONS = { k: 'knit', p: 'purl', sl: 'slip', pm: 'place marker', 
+  ABBREVIATIONS = { k: 'knit', p: 'purl', sl: 'slip', pm: 'place marker',
                     slm: 'slip marker', k2tog: 'knit 2 together', co: 'cast on',
                     bo: 'bind off', st: 'stitch', sts: 'stitches', rpt: 'repeat',
                     rpts: 'repeats' }
-  
-  HAT_SIZES = { infant: [13, 15], 
-                  child: [17, 20, 21], 
+
+  HAT_SIZES = { infant: [13, 15],
+                  child: [17, 20, 21],
                   adult: [22, 23, 25] }
-end 
+end
 
 # Too many responsibilities!!!
 # TODO: split view helpers (ex: print_abbreivations), lookup, algorithms
 class PatternGenerator
   include SizeAbbrevsConstants
   attr_reader :row_4, :row_1, :per_4, :per_1, :display
-  
+
   def initialize(user_input)
     @user_input = user_input
     @yarn = Yarn.find(@user_input.yarn_id)
-  end 
+  end
 
   def print_abbreviations
     legend = ABBREVIATIONS.map do |abbrev, definition|
@@ -29,24 +29,24 @@ class PatternGenerator
 
   def title
     @user_input.name
-  end 
-  
+  end
+
   def user_id
     @user_input.user_id
-  end 
-  
+  end
+
   def needle
     Needle.find(@user_input.needle_id).size
-  end 
+  end
 
   def smaller_needle
     if @user_input.needle_id-1 == 0
       needle
-    else 
+    else
       Needle.find(@user_input.needle_id-1).size
-    end 
-  end 
-  
+    end
+  end
+
   def get_gauge
     @row_4 = @user_input.gauge_row_inch * 4
     @per_4 = @user_input.gauge_per_inch * 4
@@ -60,7 +60,7 @@ class PatternGenerator
 
   def yarn_color
     @yarn.color
-  end 
+  end
 
   def yarn_weight
     # I think this association is wrong?
@@ -77,5 +77,5 @@ class PatternGenerator
 
   def to_meters(yards)
     (yards * 0.914).round(0)
-  end  
-end 
+  end
+end

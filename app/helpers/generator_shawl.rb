@@ -7,9 +7,8 @@ def print_shawl_abbreviations
     "<li class='abbreviations'>#{abbrev}: #{defi}</li>"
   end
   legend.join
-end 
+end
 
 def generate_shawl_pattern(pattern_id)
-  # Shawl generation magic... 
-end 
-
+  # Shawl generation magic...
+end
