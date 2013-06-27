@@ -1,4 +1,4 @@
-# Wrap this in a module later?
+# Wrap this into a utility module?
 def initialize_and_generate_hat(user_input)
   if SizeAbbrevsConstants::HAT_SIZES[:adult].include?(user_input.hat_circumference)
     @hat = HatAdult.new(user_input)
@@ -74,6 +74,7 @@ class HatGeneratorTemplate < PatternGenerator
   end
 
   private
+  # Move to utility or parent class? Applies to all patterns
   def round_nearest(raw, multiple = @multiple)
     round_0(raw + multiple - (raw % multiple))
   end
