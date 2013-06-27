@@ -20,15 +20,8 @@ class HatGeneratorTemplate < PatternGenerator
     set_estimated_yardage_variables
     surface_area
     find_stitch_multiple
-
-    if find_stitch_multiple == 8
-      ribbing_multiple_8
-      @num_decreases = 8
-    elsif find_stitch_multiple == 9
-      ribbing_multiple_9
-      @num_decreases = 9
-    end
-
+    ribbing_multiple_8 if find_stitch_multiple == 8
+    ribbing_multiple_9 if find_stitch_multiple == 9
     ribbing_rows
     body_height
   end
@@ -47,7 +40,7 @@ class HatGeneratorTemplate < PatternGenerator
   end
 
   def slouch_first_decrease
-    (@slouch / @num_decreases) - 1
+    (@slouch / @multiple) - 1
   end
 
   def beanie
@@ -56,7 +49,7 @@ class HatGeneratorTemplate < PatternGenerator
   end
 
   def beanie_first_decrease
-    (@beanie / @num_decreases) - 2
+    (@beanie / @multiple) - 2
   end
 
   def size
@@ -69,20 +62,20 @@ class HatGeneratorTemplate < PatternGenerator
 
   # TODO: Cut this up. It's ugly.
   def crown_decreases
-    num_sts = (@cast_on / @num_decreases)
+    num_sts = (@cast_on / @multiple)
     spacer_sts = num_sts - 2
     num_repeats = num_sts - 1
-    sts_remain = @cast_on - @num_decreases
+    sts_remain = @cast_on - @multiple
     counter = 1
     instructions = []
     (num_repeats-1).times do
       instructions << "Row #{counter}: * k#{spacer_sts}, k2tog, rpt from * to end (#{sts_remain} sts remaining).<br>"
       instructions << "Row #{counter+=1}: k all sts.<br>"
-      sts_remain-=@num_decreases
+      sts_remain-=@multiple
       spacer_sts-=1
       counter+=1
     end
-    instructions << "Next row: k2tog #{@num_decreases} times (#{sts_remain} sts remaining)."
+    instructions << "Next row: k2tog #{@multiple} times (#{sts_remain} sts remaining)."
     instructions.join
   end
 
