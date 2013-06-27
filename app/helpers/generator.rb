@@ -47,13 +47,6 @@ class PatternGenerator
     end
   end
 
-  def get_gauge
-    @row_4 = @user_input.gauge_row_inch * 4
-    @per_4 = @user_input.gauge_per_inch * 4
-    @row_1 = @user_input.gauge_row_inch
-    @per_1 = @user_input.gauge_per_inch
-  end
-
   def yarn_brand
     @yarn.brand
   end
@@ -77,5 +70,13 @@ class PatternGenerator
 
   def to_meters(yards)
     (yards * 0.914).round(0)
+  end
+
+  private
+  def get_gauge
+    @row_4 = @user_input.gauge_row_inch * 4
+    @per_4 = @user_input.gauge_per_inch * 4
+    @row_1 = @user_input.gauge_row_inch
+    @per_1 = @user_input.gauge_per_inch
   end
 end
