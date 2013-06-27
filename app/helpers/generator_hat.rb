@@ -19,7 +19,7 @@ class HatGeneratorTemplate < PatternGenerator
     get_gauge
     set_estimated_yardage_variables
     surface_area
-    find_stitch_multiple
+    set_crown_decrease_variables
     ribbing_multiple_8 if find_stitch_multiple == 8
     ribbing_multiple_9 if find_stitch_multiple == 9
     ribbing_rows
@@ -60,25 +60,17 @@ class HatGeneratorTemplate < PatternGenerator
     (@user_input.hat_circumference * 0.85).round(0)
   end
 
-  # TODO: Cut this up. It's ugly.
-  # Should return a joined array of instructions
   def crown_decreases
-    @num_sts = (@cast_on / @multiple)
-    @spacer_sts = @num_sts - 2
-    @num_repeats = @num_sts - 1
-    @sts_remain = @cast_on - @multiple
-    # TODO Move below into separate method to generate instructions
-    counter = 1
-    @instructions = []
+    @counter = 1
+    instructions = []
     (@num_repeats-1).times do
-      @instructions << "Row #{counter}: * k#{spacer_sts}, k2tog, rpt from * to end (#{@sts_remain} sts remaining).<br>"
-      @instructions << "Row #{counter+=1}: k all sts.<br>"
+      instructions << odd_decrease_row << even_decrease_row
       @sts_remain-=@multiple
       @spacer_sts-=1
-      counter+=1
+      @counter+=1
     end
-    @instructions << "Next row: k2tog #{@multiple} times (#{@sts_remain} sts remaining)."
-    @instructions.join
+    instructions << final_decrease_row
+    instructions.join
   end
 
   private
@@ -101,6 +93,25 @@ class HatGeneratorTemplate < PatternGenerator
       @multiple = 9
     end
     @multiple
+  end
+
+  def set_crown_decrease_variables
+    @num_sts = (@cast_on / @multiple)
+    @spacer_sts = @num_sts - 2
+    @num_repeats = @num_sts - 1
+    @sts_remain = @cast_on - @multiple
+  end
+
+  def odd_decrease_row
+    "Row #{@counter}: * k#{@spacer_sts}, k2tog, rpt from * to end (#{@sts_remain} sts remaining).<br>"
+  end
+
+  def even_decrease_row
+    "Row #{@counter+=1}: k all sts.<br>"
+  end
+
+  def final_decrease_row
+    "Next row: k2tog #{@multiple} times (#{@sts_remain} sts remaining)."
   end
 end
 
