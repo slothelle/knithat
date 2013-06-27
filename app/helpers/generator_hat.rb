@@ -36,12 +36,12 @@ class HatGeneratorTemplate < PatternGenerator
 
   def slouch
     raw = @cast_on * 1.25
-    @slouch = rounding(raw)
+    @slouch = round_nearest(raw)
   end
 
   def beanie
     raw = @cast_on * 0.90
-    @beanie = rounding(raw)
+    @beanie = round_nearest(raw)
   end
 
   def beanie_first_decrease
@@ -57,7 +57,7 @@ class HatGeneratorTemplate < PatternGenerator
   end
 
   def ease
-    (@user_input.hat_circumference * 0.85).round(0)
+    round_0(@user_input.hat_circumference * 0.85)
   end
 
   def crown_decreases
@@ -74,8 +74,8 @@ class HatGeneratorTemplate < PatternGenerator
   end
 
   private
-  def rounding(raw, multiple = @multiple)
-    (raw + multiple - (raw % multiple)).round(0)
+  def round_nearest(raw, multiple = @multiple)
+    round_0(raw + multiple - (raw % multiple))
   end
 
   def surface_area
@@ -83,8 +83,8 @@ class HatGeneratorTemplate < PatternGenerator
   end
 
   def find_stitch_multiple
-    raw = (@user_input.hat_circumference * @per_1 * 0.85).round(0)
-    rounded = [round(raw, 8), round(raw, 9)]
+    raw = round_0(@user_input.hat_circumference * @per_1 * 0.85)
+    rounded = [round_nearest(raw, 8), round_nearest(raw, 9)]
     if rounded.min % 8 == 0
       @cast_on = rounded.min
       @multiple = 8
@@ -117,11 +117,11 @@ end
 
 class HatAdult < HatGeneratorTemplate
   def ribbing_rows
-    "2 inches (#{(@row_1 * 2).round(0)} rows)"
+    "2 inches (#{round_0(@row_1 * 2)} rows)"
   end
 
   def body_height
-    "6.5 inches (#{(@row_1 * 6.5).round(0)} rows)"
+    "6.5 inches (#{round_0(@row_1 * 6.5)} rows)"
   end
 
   private
@@ -133,11 +133,11 @@ end
 
 class HatChild < HatGeneratorTemplate
   def ribbing_rows
-    "1.5 inches (#{(@row_1*1.5).round(0)} rows)"
+    "1.5 inches (#{round_0(@row_1*1.5)} rows)"
   end
 
   def body_height
-    "5 inches (#{(@row_1 * 5).round(0)} rows)"
+    "5 inches (#{round_0(@row_1 * 5)} rows)"
   end
 
   private
@@ -149,11 +149,11 @@ end
 
 class HatToddler < HatGeneratorTemplate
   def ribbing_rows
-    "1.5 inches (#{(@row_1*1.5).round(0)} rows)"
+    "1.5 inches (#{round_0(@row_1*1.5)} rows)"
   end
 
   def body_height
-    "4 inches (#{(@row_1 * 4).round(0)})"
+    "4 inches (#{round_0(@row_1 * 4)})"
   end
 
   private
@@ -165,11 +165,11 @@ end
 
 class HatInfant < HatGeneratorTemplate
   def ribbing_rows
-    "1 inch (#{@row_1.round(0)} rows)"
+    "1 inch (#{round_0(@row_1)} rows)"
   end
 
   def body_height
-    "2.5 inches (#{(@row_1 * 2.5).round(0)} rows)"
+    "2.5 inches (#{round_0(@row_1 * 2.5)} rows)"
   end
 
   private

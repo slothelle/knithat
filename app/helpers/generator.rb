@@ -65,18 +65,28 @@ class PatternGenerator
   end
 
   def estimated_yardage
-    (@yarn.yarn_weight.yardage_factor.to_f * @square_inches * 1.1).round(0)
+    round_0(@yarn.yarn_weight.yardage_factor.to_f * @square_inches * 1.1)
   end
 
   def to_meters(yards)
-    (yards * 0.914).round(0)
+    round_0(yards * 0.914)
   end
 
   private
+  # Break this up
   def get_gauge
     @row_4 = @user_input.gauge_row_inch * 4
     @per_4 = @user_input.gauge_per_inch * 4
     @row_1 = @user_input.gauge_row_inch
     @per_1 = @user_input.gauge_per_inch
+  end
+
+  # Can these be moved into a module since they're utility methods?
+  def round_0(num)
+    num.round(0)
+  end
+
+  def round_2(num)
+    num.round(2)
   end
 end
