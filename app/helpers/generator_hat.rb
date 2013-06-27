@@ -27,7 +27,7 @@ class HatGeneratorTemplate < PatternGenerator
     elsif find_stitch_multiple == 9
       ribbing_multiple_9
       @num_decreases = 9
-    end 
+    end
 
     ribbing_rows
     body_height
@@ -38,21 +38,21 @@ class HatGeneratorTemplate < PatternGenerator
     rounded = [(raw + 8 - (raw % 8)), (raw + 9 - (raw % 9))]
     if rounded.min % 8 == 0
       @cast_on = rounded.min
-      @multiple = 8 
+      @multiple = 8
     elsif rounded.min % 9 == 0
       @cast_on = rounded.min
       @multiple = 9
     end
     @multiple
-  end 
+  end
 
   def ribbing_multiple_8
-    @ribbing = "1x1 or 2x2 (k1, p1 or k2, p2)" 
+    @ribbing = "1x1 or 2x2 (k1, p1 or k2, p2)"
   end
 
   def ribbing_multiple_9
     @ribbing = "3x3 (k3, p3)"
-  end 
+  end
 
   def slouch
     raw = @cast_on * 1.25
@@ -74,7 +74,7 @@ class HatGeneratorTemplate < PatternGenerator
 
   def surface_area
     @square_inches = (3.142 * @radius * @slope) + (3.142 * @radius * @radius)
-  end 
+  end
 
   def size
     @user_input.hat_circumference
@@ -82,7 +82,7 @@ class HatGeneratorTemplate < PatternGenerator
 
   def ease
     (@user_input.hat_circumference * 0.85).round(0)
-  end  
+  end
 
   # TODO: Cut this up. It's ugly.
   def crown_decreases
@@ -92,7 +92,7 @@ class HatGeneratorTemplate < PatternGenerator
     sts_remain = @cast_on - @num_decreases
     counter = 1
     instructions = []
-    (num_repeats-1).times do 
+    (num_repeats-1).times do
       instructions << "Row #{counter}: * k#{spacer_sts}, k2tog, rpt from * to end (#{sts_remain} sts remaining).<br>"
       instructions << "Row #{counter+=1}: k all sts.<br>"
       sts_remain-=@num_decreases
@@ -101,19 +101,19 @@ class HatGeneratorTemplate < PatternGenerator
     end
     instructions << "Next row: k2tog #{@num_decreases} times (#{sts_remain} sts remaining)."
     instructions.join
-  end  
+  end
 end
 
 class HatAdult < HatGeneratorTemplate
   def set_estimated_yardage_variables
     @radius = @user_input.hat_circumference/(2*3.142)
     @slope = 18 # ribbing_rows + body_height + decrease estimate
-  end 
+  end
 
   def ribbing_rows
     "2 inches (#{(@row_1 * 2).round(0)} rows)"
-  end 
-  
+  end
+
   def body_height
     "6.5 inches (#{(@row_1 * 6.5).round(0)} rows)"
   end
@@ -123,7 +123,7 @@ class HatChild < HatGeneratorTemplate
   def set_estimated_yardage_variables
     @radius = @user_input.hat_circumference/(2*3.142)
     @slope = 14.5
-  end 
+  end
 
   def ribbing_rows
     "1.5 inches (#{(@row_1*1.5).round(0)} rows)"
@@ -131,14 +131,14 @@ class HatChild < HatGeneratorTemplate
 
   def body_height
     "5 inches (#{(@row_1 * 5).round(0)} rows)"
-  end  
+  end
 end
 
 class HatToddler < HatGeneratorTemplate
   def set_estimated_yardage_variables
     @radius = @user_input.hat_circumference/(2*3.142)
     @slope = 8.5
-  end 
+  end
 
   def ribbing_rows
     "1.5 inches (#{(@row_1*1.5).round(0)} rows)"
@@ -146,20 +146,20 @@ class HatToddler < HatGeneratorTemplate
 
   def body_height
     "4 inches (#{(@row_1 * 4).round(0)})"
-  end  
+  end
 end
 
 class HatInfant < HatGeneratorTemplate
   def set_estimated_yardage_variables
     @radius = @user_input.hat_circumference/(2*3.142)
     @slope = 6 # ribbing_rows + body_height + decrease estimate
-  end 
+  end
 
   def ribbing_rows
-    "1 inch (#{@row_1.round(0)} rows)" 
+    "1 inch (#{@row_1.round(0)} rows)"
   end
 
   def body_height
     "2.5 inches (#{(@row_1 * 2.5).round(0)} rows)"
-  end 
+  end
 end
