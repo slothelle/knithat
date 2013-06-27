@@ -39,10 +39,6 @@ class HatGeneratorTemplate < PatternGenerator
     @slouch = rounding(raw)
   end
 
-  def slouch_first_decrease
-    (@slouch / @multiple) - 1
-  end
-
   def beanie
     raw = @cast_on * 0.90
     @beanie = rounding(raw)
@@ -50,6 +46,10 @@ class HatGeneratorTemplate < PatternGenerator
 
   def beanie_first_decrease
     (@beanie / @multiple) - 2
+  end
+
+  def slouch_first_decrease
+    (@slouch / @multiple) - 1
   end
 
   def size
@@ -61,22 +61,24 @@ class HatGeneratorTemplate < PatternGenerator
   end
 
   # TODO: Cut this up. It's ugly.
+  # Should return a joined array of instructions
   def crown_decreases
-    num_sts = (@cast_on / @multiple)
-    spacer_sts = num_sts - 2
-    num_repeats = num_sts - 1
-    sts_remain = @cast_on - @multiple
+    @num_sts = (@cast_on / @multiple)
+    @spacer_sts = @num_sts - 2
+    @num_repeats = @num_sts - 1
+    @sts_remain = @cast_on - @multiple
+    # TODO Move below into separate method to generate instructions
     counter = 1
-    instructions = []
-    (num_repeats-1).times do
-      instructions << "Row #{counter}: * k#{spacer_sts}, k2tog, rpt from * to end (#{sts_remain} sts remaining).<br>"
-      instructions << "Row #{counter+=1}: k all sts.<br>"
-      sts_remain-=@multiple
-      spacer_sts-=1
+    @instructions = []
+    (@num_repeats-1).times do
+      @instructions << "Row #{counter}: * k#{spacer_sts}, k2tog, rpt from * to end (#{@sts_remain} sts remaining).<br>"
+      @instructions << "Row #{counter+=1}: k all sts.<br>"
+      @sts_remain-=@multiple
+      @spacer_sts-=1
       counter+=1
     end
-    instructions << "Next row: k2tog #{@multiple} times (#{sts_remain} sts remaining)."
-    instructions.join
+    @instructions << "Next row: k2tog #{@multiple} times (#{@sts_remain} sts remaining)."
+    @instructions.join
   end
 
   private

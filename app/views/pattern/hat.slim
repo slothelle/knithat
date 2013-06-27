@@ -1,5 +1,5 @@
 - if current_user
-  
+
   #{puts @hat.class}
   p#title == @hat.title
 
@@ -27,19 +27,19 @@
   p
     |
       #{@hat.per_4} stitches per 4 inches/10 cms, #{@hat.row_4} rows per 4 inches/10 cms.
-  
+
   h3 Yarn information
   p
     |
       #{@hat.yarn_brand} in #{@hat.yarn_color} (#{@hat.yarn_weight}), approximately #{@hat.yarn_yards} yards/#{@hat.to_meters(@hat.yarn_yards)} meters.
 
   h3 Estimated yardage
-  p 
+  p
     |
       My big computer brain calculates that you'll need #{@hat.estimated_yardage} yards/#{@hat.to_meters(@hat.estimated_yardage)} meters of #{@hat.yarn_weight} weight yarn to complete this project.
   p.emphasis
-    | 
-      These are estimates based on your gauge and selected yarn weight. It includes approximately 10% wiggle room.   
+    |
+      These are estimates based on your gauge and selected yarn weight. It includes approximately 10% wiggle room.
 
   h3 Abbreviations
   ul.abbreviations
@@ -50,7 +50,7 @@
   p.subtitle Set Up
   p
     |
-      Using #{@hat.smaller_needle}, loosely CO #{@hat.cast_on} sts. PM and join for knitting in the round. Work in #{@hat.ribbing} ribbing for #{@hat.ribbing_rows}. Switch to #{@hat.needle}. 
+      Using #{@hat.smaller_needle}, loosely CO #{@hat.cast_on} sts. PM and join for knitting in the round. Work in #{@hat.ribbing} ribbing for #{@hat.ribbing_rows}. Switch to #{@hat.needle}.
 
   p For regular hats, proceed to hat body.
   p For a slouchy hat or a beanie, work the increases or decreases listed below before proceeding to hat body.
@@ -62,12 +62,12 @@
   p.subtitle Hat Body
   p
     |
-      Work in the round in your desired stitch motif for appromxiately #{@hat.body_height}. 
-  
+      Work in the round in your desired stitch motif for appromxiately #{@hat.body_height}.
+
 
 
   p.subtitle Crown Decreases
-  
+
   p.optionalsubtitle Crown Decreases, slouchy hats
   p
     |
@@ -79,19 +79,19 @@
   p
     |
       Work the regular crown decrease instructions (below), beginning with the row that starts with k#{@hat.beanie_first_decrease}. You may need to adjust the numbers slightly.
-  
+
   p.optionalsubtitle Crown Decreases, regular hats
   == @hat.crown_decreases
 
-  
+
 
   p
     |
-      Cinch remaining sts together. Weave in ends and block if desired. 
+      Cinch remaining sts together. Weave in ends and block if desired.
 
 
 - else
   p#title Whoops!
   p
     |
-      It doesn't look like this is your pattern. 
+      It doesn't look like this is your pattern.
