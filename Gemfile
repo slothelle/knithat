@@ -4,7 +4,7 @@ ruby '1.9.3'
 gem 'rake', '~> 10.1.0'
 
 # PostgreSQL driver
-gem 'pg'
+gem 'pg', '~> 0.14.1'
 
 # Sinatra driver
 gem 'sinatra'

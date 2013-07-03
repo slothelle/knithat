@@ -1,28 +1,12 @@
-# Wrap this into a utility module?
-def initialize_and_generate_hat(user_input)
-  if SizeAbbrevsConstants::HAT_SIZES[:adult].include?(user_input.hat_circumference)
-    @hat = HatAdult.new(user_input)
-  elsif SizeAbbrevsConstants::HAT_SIZES[:child].include?(user_input.hat_circumference)
-    @hat = HatChild.new(user_input)
-  elsif user_input.hat_circumference == SizeAbbrevsConstants::HAT_SIZES[:infant][1]
-    @hat = HatToddler.new(user_input)
-  elsif user_input.hat_circumference == SizeAbbrevsConstants::HAT_SIZES[:infant][0]
-    @hat = HatInfant.new(user_input)
-  end
-  @hat.generate_hat_pattern
-end
-
 class HatGeneratorTemplate < PatternGenerator
-  attr_reader :cast_on, :ribbing, :crown_decreases
+  attr_reader :cast_on, :ribbing
 
   def generate_hat_pattern
-    get_gauge
     set_estimated_yardage_variables
     surface_area
     set_crown_decrease_variables
     ribbing_multiple_8 if find_stitch_multiple == 8
     ribbing_multiple_9 if find_stitch_multiple == 9
-    ribbing_rows
     body_height
   end
 
