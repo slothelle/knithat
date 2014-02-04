@@ -1,30 +1,11 @@
-module SizeAbbrevsConstants
-  ABBREVIATIONS = { k: 'knit', p: 'purl', sl: 'slip', pm: 'place marker',
-                    slm: 'slip marker', k2tog: 'knit 2 together', co: 'cast on',
-                    bo: 'bind off', st: 'stitch', sts: 'stitches', rpt: 'repeat',
-                    rpts: 'repeats' }
-
-  HAT_SIZES = { infant: [13, 15],
-                  child: [17, 20, 21],
-                  adult: [22, 23, 25] }
-end
-
 # Too many responsibilities!!!
 # TODO: split view helpers (ex: print_abbreivations), lookup, algorithms
 class PatternGenerator
   include SizeAbbrevsConstants
-  attr_reader :row_4, :row_1, :per_4, :per_1, :display
 
   def initialize(user_input)
     @user_input = user_input
     @yarn = Yarn.find(@user_input.yarn_id)
-  end
-
-  def print_abbreviations
-    legend = ABBREVIATIONS.map do |abbrev, definition|
-      "<li class='abbreviations'>#{abbrev}: #{definition}</li>"
-    end
-    legend.join
   end
 
   def title
@@ -47,13 +28,6 @@ class PatternGenerator
     end
   end
 
-  def get_gauge
-    @row_4 = @user_input.gauge_row_inch * 4
-    @per_4 = @user_input.gauge_per_inch * 4
-    @row_1 = @user_input.gauge_row_inch
-    @per_1 = @user_input.gauge_per_inch
-  end
-
   def yarn_brand
     @yarn.brand
   end
@@ -72,10 +46,22 @@ class PatternGenerator
   end
 
   def estimated_yardage
-    (@yarn.yarn_weight.yardage_factor.to_f * @square_inches * 1.1).round(0)
+    round_0(@yarn.yarn_weight.yardage_factor.to_f * @square_inches * 1.1)
   end
 
-  def to_meters(yards)
-    (yards * 0.914).round(0)
+  def per_4
+    round_2(@user_input.gauge_per_inch * 4)
+  end
+
+  def row_4
+    round_2(@user_input.gauge_row_inch * 4)
+  end
+
+  def row_1
+    @user_input.gauge_row_inch
+  end
+
+  def per_1
+    @user_input.gauge_per_inch
   end
 end
